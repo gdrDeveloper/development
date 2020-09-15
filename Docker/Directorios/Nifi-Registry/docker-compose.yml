@@ -1,0 +1,54 @@
+version: '3.8'
+services:
+  nifi1114:
+    image: 'apache/nifi:1.11.4'
+    container_name: nifi1114
+    hostname: nifi
+    user: root
+    ports:
+      - "8084:8084"
+    environment:
+      - NIFI_WEB_HTTP_PORT=8084
+      - NIFI_ELECTION_MAX_WAIT=1 min
+      - TZ=America/Argentina/Buenos_Aires
+      - LANG=es_AR.UTF-8
+      - NIFI_JVM_HEAP_MAX=2g
+    volumes:
+      - ../../Librerias/:/home/nifi/
+      - ./Nifi/conf/:/opt/nifi/nifi-1.11.4/conf/    
+      - ./Nifi/content_repository/:/opt/nifi/nifi-1.11.4/content_repository/
+      - ./Nifi/database_repository/:/opt/nifi/nifi-1.11.4/database_repository/
+      - ./Nifi/flowfile_repository/:/opt/nifi/nifi-1.11.4/flowfile_repository/
+      - ./Nifi/provenance_repository/:/opt/nifi/nifi-1.11.4/provenance_repository/
+      - ./Nifi/logs/:/opt/nifi/nifi-1.11.4/logs/
+    networks:
+      - grilon
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 2048M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 100m
+        max-file: "3"
+  registry060:
+    image: 'apache/nifi-registry:latest'
+    container_name: registry060
+    hostname: registry060
+    user: root
+    ports:
+      - "18084:18084"
+    environment:
+      - NIFI_REGISTRY_WEB_HTTP_PORT=18084
+      - TZ=America/Argentina/Buenos_Aires
+      - LANG=es_AR.UTF-8
+    volumes:
+      - ./Registry/flow_storage/:/opt/nifi-registry/nifi-registry-current/flow_storage/
+      - ./Registry/logs/:/opt/nifi-registry/nifi-registry-current/logs
+    networks:
+      - grilon
+networks:
+  grilon:
+    driver: bridge

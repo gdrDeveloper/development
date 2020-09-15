@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  oracledb12201:
+    image: 'store/oracle/database-enterprise:12.2.0.1'
+    container_name: oracledb12201
+    hostname: oracledb12201
+    extra_hosts:
+      - "oracledb12201:127.0.0.1"
+    ports:
+      - "127.0.0.1:1525:1521"
+      - "127.0.0.1:5505:5500"
+    environment:
+      - DB_SID=ORA12CDK
+      - DB_PDB=ORCLPDBDOCKER
+      - DB_MEMORY=3GB
+      - DB_DOMAIN=oracledockerdomain
+      - TZ=America/Argentina/Buenos_Aires
+      - LANG=es_AR.UTF-8
+    volumes:      
+      - ./data/:/ORCL
+      - ./oradata:/opt/oracle/oradata
+      - ./logs/:/home/oracle/setup/log/
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1024M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 100m
+        max-file: "3"
