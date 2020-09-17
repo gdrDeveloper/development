@@ -71,6 +71,33 @@ host_path:image_path
 > **Este problema está en la lista de pendientes a resolver**
 
 # Modo de uso
+## Modo de Ejecución
+### Windows
+Es necesario contar con el programa [Docker Desktop para windows](https://docs.docker.com/docker-for-windows/install/) para poder ejecutar docker en windows. Al mismo tiempo deberás contar con una consola de comandos, te recomiendo que uses [git bash](https://git-scm.com/downloads) dado que podras usarla también para la gestión de tus repositorios git.
+### Linux
+Es necesario instalar [Docker Engine](https://docs.docker.com/engine/install/ubuntu/) para poder ejecutar docker en linux y luego instalar docker-compose.
+```
+sudo curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+docker-compose version
+```
+### MAC
+No tuve la oportunidad de probar el sistema operativo MAC por lo que en lo único que puedo ayudarte es en compartirte esta [guia oficial](https://docs.docker.com/docker-for-mac/install/).
+
+
+Para poder ejecutar los contenedores deberás usar el siguiente comando posicionado en la carpeta que desees:
+
+> Por ejemplo, si solo quisieras utilizar el contenedor de Apache Nifi, deberás posicionarte en ~\development\Docker\Directorios\Nifi-1114
+
+- Sin ver los logs
+```
+docker-compose --compatibility up -d
+```
+- Viendo los logs
+```
+docker-compose --compatibility up
+```
+
 ## URLs
 - Apache Nifi: http://localhost:8084/nifi/
 - Apache Nifi Registry: http://localhost:18084/nifi-registry
