@@ -110,7 +110,7 @@ docker-compose --compatibility up
 - Usuario: sys
 - Contraseña: Oradoc_db1
 
-### Script para la creacion de un usuario
+### Script para la creación de un usuario
 Deberás actualizar **USUARIO**  por el nombre que quieras dar a tu usuario y **CONTRASENA**  por la contraseña para el mismo.
 ```
 ALTER SESSION SET "_ORACLE_SCRIPT"=true;
