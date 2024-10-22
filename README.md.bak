@@ -74,12 +74,6 @@ host_path:image_path
 
 > **Este problema está en la lista de pendientes a resolver**
 
-> Las credenciales para acceder al canvas de Nifi estan configuradas en estos dos parametros que podras editar segun tu necesidad. La contraseña debe ser mayor o igual a 12 caracteres de lo contrario se generaran las credenciales y deberes buscarla en los archivos logs.
-```
-      - SINGLE_USER_CREDENTIALS_USERNAME=admin
-      - SINGLE_USER_CREDENTIALS_PASSWORD=123456781234
-```
-
 # Modo de uso
 ## Modo de Ejecución
 ### Windows
